@@ -6,13 +6,13 @@
 // You might be familiar with this implementation if you have used the
 // Underscore or Lodash libraries.
 
-const map = xs => fn => xs.map(fn)
+const map = xs => fn => xs.map(fn);
 
-const arr1 = [1, 2, 3, 4, 5]
-const double = num => num * 2
+const arr1 = [1, 2, 3, 4, 5];
+const double = num => num * 2;
 
-const arr1withMap = map(arr1)
-const arr1Doubles = arr1withMap(double) // [2, 4, 6, 8, 10]
+const arr1withMap = map(arr1);
+const arr1Doubles = arr1withMap(double); // [2, 4, 6, 8, 10]
 
 // Our `map` function works, but the partially applied function it creates
 // isn't very useful. It has data, but doesn't know what to do with it.
@@ -20,13 +20,18 @@ const arr1Doubles = arr1withMap(double) // [2, 4, 6, 8, 10]
 // to receive it. Then we could pass whatever data we would like to it. Let's
 // change the argument order.
 
-const map2 = fn => xs => xs.map(fn)
+const map2 = fn => xs => xs.map(fn);
 
-const listDoubler = map(double)
+const listDoubler = map(double);
 
-listDoubler(arr1) // [2, 4, 6, 8, 10]
-listDoubler([3, 4, 8]) // [6, 8, 16]
-listDoubler([1, -1, 0]) // [2, -2, 0]
+listDoubler(arr1); // [2, 4, 6, 8, 10]
+listDoubler([3, 4, 8]); // [6, 8, 16]
+listDoubler([1, -1, 0]); // [2, -2, 0]
+
+
+// Most specific => least specific
+
+
 
 // Now our partially applied function can be applied to any list of numbers
 // which is very useful.
@@ -40,8 +45,8 @@ listDoubler([1, -1, 0]) // [2, -2, 0]
 // Let's make a second example and drive this home. Let's make a function that
 // picks a value out of an object based on a key.
 
-const pick = key => obj => obj[key]
-const pickName = pick('name')
+const pick = key => obj => obj[key];
+const pickName = pick('name');
 
 const people = [
   { name: 'Kyle' },
@@ -49,9 +54,9 @@ const people = [
   { name: 'Kent' },
   { name: 'Sarah' },
   { name: 'Ken' }
-]
+];
 
-const names = map2(pickName)(people) // ['Kyle', 'Shirley', 'Kent', 'Sarah', 'Ken']
+const names = map2(pickName)(people); // ['Kyle', 'Shirley', 'Kent', 'Sarah', 'Ken']
 
 // Imagine if pick's argument order was the other way. We couldn't pass it to
 // the array's map method in a useful way because we'd have no way to declare
