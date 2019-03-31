@@ -18,10 +18,10 @@ function add(x) {
   }
 }
 
-const addFive = add(5) // returns a function awaiting a second value
-addFive(4) // 9
-addFive(15) // 20
-addFive(8) // 13
+const addFive = add(5); // returns a function awaiting a second value
+addFive(4); // 9
+addFive(15); // 20
+addFive(8); // 13
 
 // Some helpful jargon to learn when discussing functions is "arity". Arity
 // describes the number of arguments a function receives. There are words
@@ -33,7 +33,7 @@ addFive(8) // 13
 // 4 arguments = quaternary (no that's not a typo)
 
 // Any function that receives more than one argument can be described as a
-// multivariate function. Thus, currying can then be described as the act of
+// multivariate function. Thus, currying can then be described as the act of          <<<< this is how you would describe currying
 // refactoring a multivariate function into one that is a series of unary functions.
 
 // Typically, an `add()` function is a binary function, receiving two arguments
@@ -48,7 +48,7 @@ addFive(8) // 13
 // a new function and where the values are stored in closure. We can write this
 // function much more succinctly with ES2015+ arrow function syntax.
 
-const add2 = x => y => x + y
+const add2 = x => y => x + y;
 
 // Unary arrow functions do not require parentheses around the argument, and
 // will implicitly return the expression that follows the arrow.Thus, we can
