@@ -6,13 +6,13 @@ const {
   split,
   join,
   lowerCase
-} = require('./shared')
+} = require('./shared');
 
 const bookTitles = [
   'The Culture Code',
   'Designing Your Life',
   'Algorithms to Live By'
-]
+];
 
 // One of the challenges of debugging functional compositions is that,
 // by design, we have removed side effects in favor of pure, pointfree
@@ -20,7 +20,7 @@ const bookTitles = [
 // values at different parts of their transformation during a composition.
 // This can be achieved with the use of a `trace()` function.
 
-const trace = msg => x => (console.log(msg, x), x)
+const trace = msg => x => (console.log(msg, x), x);
 
 // The code above may look a bit confusing. We are using the comma operator,
 // a not-so-well-known operator that evaluates each expression from left to
@@ -37,21 +37,21 @@ let slugify = compose(
   join('-'),
   map(lowerCase),
   map(split(' '))
-)
+);
 
-console.log(slugify(bookTitles)) // str.toLowerCase is not a function
+console.log(slugify(bookTitles)); // str.toLowerCase is not a function
 
 // Ok, something isn't right about our composition, let's add some traces to see into
 // the transformations
 
 slugify = compose(
-  join('-')
+  join('-'),
   map(lowerCase),
   trace('after split'),
   map(split(' '))
 )
 
-console.log(slugify(bookTitles))
+console.log(slugify(bookTitles));
 // [[ 'The', 'Culture', 'Code' ], [ 'Designing', 'Your', 'Life' ], ['Algorithms', 'to', 'Live', 'By']]
 // str.toLowerCase is not a function
 
@@ -62,9 +62,9 @@ slugify = compose(
   join('-'),
   map(split(' ')),
   map(lowerCase)
-)
+);
 
-console.log(slugify(bookTitles))
+console.log(slugify(bookTitles));
 // 'the,culture,code-designing,your,life-algorithms,to,live,by'
 
 // Ok, no errors, but that isn't what we wanted, let's trace after the split and figure it out.
@@ -74,9 +74,9 @@ slugify = compose(
   trace('after split'),
   map(split(' ')),
   map(lowerCase)
-)
+);
 
-console.log(slugify(bookTitles))
+console.log(slugify(bookTitles));
 // [['the', 'culture', 'code'], ['designing', 'your', 'life'], ['algorithms', 'to', 'live', 'by']]
 // 'the,culture,code-designing,your,life-algorithms,to,live,by'
 
@@ -87,7 +87,7 @@ slugify = compose(
   map(join('-')),
   map(split(' ')),
   map(lowerCase)
-)
+);
 
 console.log(slugify(bookTitles))
 // ['the-culture-code', 'designing-your-life', 'algorithms-to-live-by']
@@ -104,6 +104,6 @@ slugify = compose(
       lowerCase
     )
   )
-)
+);
 
-console.log(slugify(bookTitles))
+console.log(slugify(bookTitles));
