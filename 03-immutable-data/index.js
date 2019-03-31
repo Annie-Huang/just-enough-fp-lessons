@@ -14,18 +14,40 @@
 // reference to a data structure, and then check that mutating one, mutates
 // all references.
 
-const a = [1, 2, 3]
-const b = a
-b.push(4)
-console.log(a) // [1, 2, 3, 4]
-console.log(a === b) // true, same reference
+const a = [1, 2, 3];
+const b = a;
+b.push(4);
+console.log(a); // [1, 2, 3, 4]
+console.log(a === b); // true, same reference
+console.log('---------------------');
+
+
+
+// For instance, push is a mutation on an array
+const push = val => array => {
+  const clone = [...array];
+  clone.push(val);
+  return clone
+};
+// console.log(push(4)([1, 2, 3])); // [1,2,3,4]
+const a1 = [1, 2, 3];
+const b1 = push(4)(a1);
+console.log(a1); // [1, 2, 3]
+console.log(b1); // [1, 2, 3, 4]
+console.log(a1 === b1); // true, same reference
+console.log('---------------------');
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 // Or with an object
-const c = { foo: 'bar' }
-const d = c
-d.foo = 'baz'
-console.log(d.foo) // 'baz'
-console.log(c === d) // true, same reference
+const c = { foo: 'bar' };
+const d = c;
+d.foo = 'baz';
+console.log(d.foo); // 'baz'
+console.log(c === d); // true, same reference
+console.log('---------------------');
+
 
 // In functional programming, we use immutable data structures, which means
 // that when we want to modify data, we return a new data structure
@@ -42,28 +64,29 @@ console.log(c === d) // true, same reference
 // with the amount of content mutated to the correct amount.
 class MutableGlass {
   constructor(content, amount) {
-    this.content = content
+    this.content = content;
     this.amount = amount
   }
 
   takeDrink(value) {
-    this.amount = Math.max(this.amount - value, 0)
-    return this
+    this.amount = Math.max(this.amount - value, 0);
+    return this;
   }
 }
 
 // We can verify this by checking the references of the first glass and
 // the glass returned by `takeDrink()` and see that they are the same.
-const mg1 = new MutableGlass('water', 100)
-const mg2 = mg1.takeDrink(20)
-console.log(mg1.amount === 80 && mg1.amount === mg2.amount) // true
-console.log(mg1 === mg2) // true
+const mg1 = new MutableGlass('water', 100);
+const mg2 = mg1.takeDrink(20);
+console.log(mg1.amount === 80 && mg1.amount === mg2.amount); // true
+console.log(mg1 === mg2); // true
+console.log('---------------------');
 
 // Taking a drink from the immutable glass returns an entirely new glass,
 // but with the correct content and amount of it in the glass.
 class ImmutableGlass {
   constructor(content, amount) {
-    this.content = content
+    this.content = content;
     this.amount = amount
   }
 
@@ -74,7 +97,12 @@ class ImmutableGlass {
 
 // We can verify this by checking the references and seeing that they are
 // _not_ equal
-const ig1 = new ImmutableGlass('water', 100)
-const ig2 = ig1.takeDrink(20)
-console.log(ig1.amount !== ig2.amount) // true
-console.log(ig1 === ig2) // false
+const ig1 = new ImmutableGlass('water', 100);
+const ig2 = ig1.takeDrink(20);
+console.log(ig1.amount !== ig2.amount); // true
+console.log(ig1 === ig2); // false
+
+
+// How to run this:
+// D:\react\just-enough-fp-lessons\01-higher-order-functions>cd ..\03-immutable-data
+// D:\react\just-enough-fp-lessons\03-immutable-data>node index.js

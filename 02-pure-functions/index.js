@@ -10,7 +10,7 @@
 // and returns a value based on that input. We can write this in
 // JavaScript as:
 
-const f = x => x + 1
+const f = x => x + 1;
 
 // This function is a pure function because we always get the same
 // output from the same input, and we cause no side effects in our
@@ -19,12 +19,12 @@ const f = x => x + 1
 // Let's compare this with several impure functions.
 
 // Impure Function ex. 1 - Output not derived solely from inputs
-const COST_OF_ITEM = 19
+const COST_OF_ITEM = 19;
 function cartTotal(quantity) {
   return COST_OF_ITEM * quantity
 }
 
-cartTotal(2) // 38
+cartTotal(2); // 38
 
 // While this function returns the same value each time it is called
 // the result is not derived _only_ from its inputs, but depends on a global state
@@ -42,9 +42,9 @@ function createUser(name, age) {
   }
 }
 
-createUser('Kyle', 33) // { id: 6723, name: "Kyle", age: 33 }
-createUser('Kyle', 33) // { id: 1384, name: "Kyle", age: 33 }
-createUser('Kyle', 33) // { id: 2880, name: "Kyle", age: 33 }
+createUser('Kyle', 33); // { id: 6723, name: "Kyle", age: 33 }
+createUser('Kyle', 33); // { id: 1384, name: "Kyle", age: 33 }
+createUser('Kyle', 33); // { id: 2880, name: "Kyle", age: 33 }
 
 // If this were a pure function, calling createUser with the same
 // arguments would return the same user object. The generateID
@@ -52,7 +52,7 @@ createUser('Kyle', 33) // { id: 2880, name: "Kyle", age: 33 }
 // impure as well
 
 // Impure Function ex. 3 - Side Effects
-let id = 0
+let id = 0;
 function createFoodItem(name) {
   return {
     id: ++id,
@@ -60,9 +60,9 @@ function createFoodItem(name) {
   }
 }
 
-createFoodItem('Cheeseburger') // { id: 1, name: 'Cheeseburger' }
-createFoodItem('Fries') // { id: 2, name: 'Fries' }
-createFoodItem('Milkshake') // { id: 3, name: 'Milkshake' }
+createFoodItem('Cheeseburger'); // { id: 1, name: 'Cheeseburger' }
+createFoodItem('Fries'); // { id: 2, name: 'Fries' }
+createFoodItem('Milkshake'); // { id: 3, name: 'Milkshake' }
 
 // Not only does the function impurely return a different id
 // if given the same name, it has the side effect of modifying

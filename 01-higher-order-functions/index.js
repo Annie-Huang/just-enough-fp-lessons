@@ -6,19 +6,24 @@
 
 // Receives a function as an argument
 const withCount = fn => {
-  let count = 0
+  let count = 0;
 
   // Returns a new function
   return (...args) => {
-    console.log(`Call count: ${++count}`)
+    console.log(`Call count: ${++count}`);
     return fn(...args)
   }
-}
+};
 
-const add = (x, y) => x + y
+const add = (x, y) => x + y;
 
-const countedAdd = withCount(add)
+const countedAdd = withCount(add);
 
-console.log(countedAdd(1, 2))
-console.log(countedAdd(2, 2))
-console.log(countedAdd(3, 2))
+console.log(countedAdd(1, 2));
+console.log(countedAdd(2, 2));
+console.log(countedAdd(3, 2));
+
+// How to run:
+// D:\react\just-enough-fp-lessons>cd 01-higher-order-functions
+// D:\react\just-enough-fp-lessons\01-higher-order-functions>node index.js
+
